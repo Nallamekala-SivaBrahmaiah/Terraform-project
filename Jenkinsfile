@@ -48,7 +48,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 sh '''
-                    docker build -t $ECR_REPO:frontend-$IMAGE_TAG 
+                    docker build -t $ECR_REPO:app-$IMAGE_TAG .
                 '''
             }
         }
@@ -56,7 +56,7 @@ pipeline {
         stage('Push Docker Image to ECR') {
             steps {
                 sh '''
-                    docker push $ECR_REPO:frontend-$IMAGE_TAG
+                    docker push $ECR_REPO:app-$IMAGE_TAG
                 '''
             }
         }
