@@ -13,7 +13,7 @@ stages {
     stage('Clone Repository') {
         steps {
             git branch: 'main',
-            url: 'https://github.com/Nallamekala-SivaBrahmaiah/java-web-application.git'
+            url: 'https://github.com/Nallamekala-SivaBrahmaiah/Terraform-project.git'
         }
     }
 
@@ -28,8 +28,9 @@ stages {
             withSonarQubeEnv('sona-rqube') {
                 sh '''
                 mvn sonar:sonar \
-                -Dsonar.projectKey=java-web-application \
-                -Dsonar.sources=backend,frontend,src
+                -Dsonar.projectKey=terraform-project \
+                -Dsonar.projectName=terraform-project \
+                -Dsonar.sources=. \
                 '''
             }
         }
