@@ -8,11 +8,6 @@ pipeline {
         IMAGE_TAG = "${BUILD_NUMBER}"
     }
 
-    tools {
-        maven 'Maven'
-        jdk 'JDK17'
-    }
-
     stages {
 
         stage('Clone Repository') {
