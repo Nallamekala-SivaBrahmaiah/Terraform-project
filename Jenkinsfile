@@ -5,8 +5,7 @@ pipeline {
         AWS_REGION = "ap-south-1"
         ECR_REPO = "779679300583.dkr.ecr.ap-south-1.amazonaws.com/siva-ecr-repository02"
         ECR_REGISTRY = "779679300583.dkr.ecr.ap-south-1.amazonaws.com"
-        IMAGE_TAG = "${BUILD_NUMBER}"
-        KUBECONFIG = '/var/lib/jenkins/.kube/config'
+        IMAGE_TAG = "siva"
     }
 
     stages {
