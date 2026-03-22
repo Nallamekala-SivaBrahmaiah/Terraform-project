@@ -65,7 +65,7 @@ pipeline {
             steps {
                 sh '''
                     echo "Scanning frontend image..."
-                    trivy image --severity HIGH,CRITICAL $ECR_REPO:frontend-$IMAGE_TAG || true
+                    trivy image --severity HIGH,CRITICAL $ECR_REPO:app-$IMAGE_TAG || true
                 '''
             }
         }
@@ -74,7 +74,7 @@ pipeline {
             steps {
                 withEnv(["KUBECONFIG=/home/ubuntu/.kube/config"]) {
                     sh '''
-                        kubectl set image deployment/frontend frontend=$ECR_REPO:frontend-$IMAGE_TAG
+                        kubectl set image deployment/frontend frontend=$ECR_REPO:app-$IMAGE_TAG
                         kubectl apply -f jenkins.yaml
                     '''
                 }
