@@ -48,7 +48,6 @@ stages {
     stage('Build Docker Images') {
         steps {
             sh '''
-            docker build -t $ECR_REPO:backend-$IMAGE_TAG backend/
             docker build -t $ECR_REPO:frontend-$IMAGE_TAG frontend/
             '''
         }
@@ -57,7 +56,6 @@ stages {
     stage('Push Images to ECR') {
         steps {
             sh '''
-            docker push $ECR_REPO:backend-$IMAGE_TAG
             docker push $ECR_REPO:frontend-$IMAGE_TAG
             '''
         }
@@ -66,9 +64,6 @@ stages {
     stage('Trivy Security Scan') {
         steps {
             sh '''
-            echo "Scanning backend image..."
-            trivy image --severity HIGH,CRITICAL $ECR_REPO:backend-$IMAGE_TAG || true
-
             echo "Scanning frontend image..."
             trivy image --severity HIGH,CRITICAL $ECR_REPO:frontend-$IMAGE_TAG || true
             '''
@@ -79,6 +74,7 @@ stages {
         steps {
             sh '''
             export KUBECONFIG=/home/ubuntu/.kube/config
+            kubectl set image deployment/frontend frontend=$ECR_REPO:frontend-$IMAGE_TAG
             kubectl apply -f jenkins.yaml
             '''
         }
