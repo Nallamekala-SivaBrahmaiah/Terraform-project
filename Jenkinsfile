@@ -25,7 +25,7 @@ stages {
     
     stage('SonarQube Code Scan') {
         steps {
-            withSonarQubeEnv('sona-rqube') {
+            withSonarQubeEnv('sonar-qube') {
                 sh '''
                 mvn sonar:sonar \
                 -Dsonar.projectKey=terraform-project \
