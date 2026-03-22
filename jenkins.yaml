@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend
+  labels:
+    app: frontend
 spec:
   replicas: 2
   selector:
@@ -14,9 +16,10 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: 779679300583.dkr.ecr.ap-south-1.amazonaws.com/siva-ecr-repository02:app-8
+        image: 779679300583.dkr.ecr.ap-south-1.amazonaws.com/siva-ecr-repository02:app-siva
         ports:
         - containerPort: 8080
+
 ---
 apiVersion: v1
 kind: Service
@@ -28,5 +31,5 @@ spec:
     app: frontend
   ports:
     - protocol: TCP
-      port: 80
+      port: 8080
       targetPort: 8080
