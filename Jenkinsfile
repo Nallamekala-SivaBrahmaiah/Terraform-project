@@ -73,9 +73,7 @@ pipeline {
 
         stage('Deploy to Kubernetes') {
             steps {
-                withEnv(["KUBECONFIG=/home/ubuntu/.kube/config"]) {
                     sh '''
-                        kubectl set image deployment/frontend frontend=$ECR_REPO:app-$IMAGE_TAG
                         kubectl apply -f jenkins.yaml
                     '''
                 }
@@ -83,4 +81,3 @@ pipeline {
         }
 
     }
-}
