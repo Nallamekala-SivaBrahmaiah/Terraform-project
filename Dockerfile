@@ -9,8 +9,8 @@ RUN mvn clean package -DskipTests
 # Stage 2: Deploy to Tomcat
 FROM tomcat:9-jdk11
 RUN rm -rf /usr/local/tomcat/webapps/ROOT*
+
 COPY --from=builder /app/target/mayabazr-showroom.war /usr/local/tomcat/webapps/ROOT.war
-RUN cd /usr/local/tomcat/webapps && unzip -q ROOT.war -d ROOT && rm ROOT.war
 
 EXPOSE 8080
 CMD ["catalina.sh", "run"]
