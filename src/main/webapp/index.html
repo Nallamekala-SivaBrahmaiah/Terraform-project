@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mayabazr Showroom | complete bike & car catalog</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      background: #f4f7fb;
+      color: #1e293b;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* header */
+    .site-header {
+      background: white;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 2rem 0;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+
+    .site-header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: linear-gradient(145deg, #1e2b3a, #2c3e50);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .tagline {
+      color: #4a5c6e;
+      font-size: 1.2rem;
+      margin-top: 0.25rem;
+    }
+
+    /* navigation */
+    .navbar {
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #dde5ed;
+      padding: 0.75rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: #2d4055;
+      font-size: 1.1rem;
+      padding: 0.25rem 0;
+      border-bottom: 2px solid transparent;
+      transition: 0.2s;
+    }
+
+    .nav-links a:hover {
+      border-bottom-color: #3b82f6;
+      color: #0b1e2e;
+    }
+
+    /* sections */
+    .section {
+      padding: 3rem 0;
+    }
+
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 650;
+      margin-bottom: 2.5rem;
+      border-left: 6px solid #3b82f6;
+      padding-left: 1.3rem;
+      color: #13293d;
+    }
+
+    /* vehicle grid */
+    .vehicle-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 12px 28px -8px rgba(0,32,64,0.12);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border: 1px solid #ecf3fa;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 36px -12px #1e3f5f40;
+    }
+
+    .card-image {
+      width: 100%;
+      height: 200px;
+      background: #e9eef3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid #dbe5f0;
+    }
+
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #f1f5f9;
+    }
+
+    .card-content {
+      padding: 1.5rem 1.2rem 1.8rem 1.2rem;
+      flex: 1;
+    }
+
+    .vehicle-name {
+      font-size: 1.5rem;
+      font-weight: 660;
+      color: #0b2133;
+      line-height: 1.2;
+      margin-bottom: 0.25rem;
+    }
+
+    .vehicle-price {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #1d3d5c;
+      margin: 0.5rem 0 0.4rem;
+    }
+
+    .vehicle-price small {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: #5f748b;
+      margin-left: 0.25rem;
+    }
+
+    .vehicle-desc {
+      color: #475569;
+      font-size: 0.95rem;
+      border-top: 1px dashed #d1deed;
+      padding-top: 0.8rem;
+      margin-top: 0.3rem;
+    }
+
+    .vehicle-desc + .vehicle-desc {
+      border-top: none;
+      padding-top: 0;
+      margin-top: 0.2rem;
+    }
+
+    /* footer */
+    .site-footer {
+      background: white;
+      border-top: 1px solid #e2e8f0;
+      padding: 2.5rem 0;
+      margin-top: 2rem;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      color: #2c4059;
+    }
+
+    .contact-info span {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .copyright {
+      color: #60758b;
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 0 1.2rem; }
+      .nav-links { gap: 1.5rem; }
+      .footer-content { flex-direction: column; align-items: start; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1 class="showroom-name">MAYABAZR SHOWROOM</h1>
+      <p class="tagline">bikes · cars · specs · prices</p>
+    </div>
+  </header>
+
+  <nav class="navbar">
+    <div class="container">
+      <ul class="nav-links">
+        <li><a href="#bikes">Bikes</a></li>
+        <li><a href="#cars">Cars</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <!-- ========== BIKES SECTION ========== -->
+    <section id="bikes" class="section">
+      <div class="container">
+        <h2 class="section-title">🏍️ premium bikes</h2>
+        <div class="vehicle-grid">
+          <!-- 1. Kawasaki Ninja H2R -->
+          <div class="card">
+            <div class="card-image">
+              <img src="https://cdn1.smartprix.com/rx-ieldFZ0M8-w280-h280/kawasaki-ninja-h2r.webp" alt="Kawasaki Ninja H2R" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h3 class="vehicle-name">Kawasaki Ninja H2R</h3>
+              <div class="vehicle-price">₹79,90,000 <small>ex-showroom</small></div>
+              <p class="vehicle-desc">998cc supercharged inline‑4, 310 bhp, track‑only weapon. Carbon fibre winglets.</p>
+            </div>
+          </div>
+
+          <!-- 2. Benda Dark Flag 500 -->
+          <div class="card">
+            <div class="card-image">
+              <img src="https://cdn1.smartprix.com/rx-i45A0tain-w280-h280/benda-dark-flag-500.webp" alt="Benda Dark Flag 500" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h3 class="vehicle-name">Benda Dark Flag 500</h3>
+              <div class="vehicle-price">₹4,50,000 <small>approx</small></div>
+              <p class="vehicle-desc">500cc V‑twin cruiser, chopper style, belt drive, LED lighting, muscular stance.</p>
+            </div>
+          </div>
+
+          <!-- 3. Royal Enfield Hunter 350 -->
+          <div class="card">
+            <div class="card-image">
+              <img src="https://cdn1.smartprix.com/rx-iIH0H41TW-w280-h280/royal-enfield-hunter.webp" alt="Royal Enfield Hunter 350" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h3 class="vehicle-name">Royal Enfield Hunter 350</h3>
+              <div class="vehicle-price">₹1,49,900 – 1,81,750 <small>on-road</small></div>
+              <p class="vehicle-desc">349cc J‑series, 20.2 bhp, retro roadster, lightweight and agile.</p>
+            </div>
+          </div>
+
+          <!-- 4. Yamaha XSR 155 -->
+          <div class="card">
+            <div class="card-image">
+              <img src="https://cdn1.smartprix.com/rx-iuCQaK6Nq-w280-h280/yamaha-xsr-155.webp" alt="Yamaha XSR 155" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h3 class="vehicle-name">Yamaha XSR 155</h3>
+              <div class="vehicle-price">₹1,49,990 – 1,58,990 <small>on-road</small></div>
+              <p class="vehicle-desc">155cc liquid‑cooled, VVA, neo‑retro design, USD forks, slipper clutch.</p>
+            </div>
+          </div>
+
+          <!-- 5. TVS Fiero 125 -->
+          <div class="card">
+            <div class="card-image">
+              <img src="https://cdn1.smartprix.com/rx-i3AlHETcN-w280-h280/tvs-fiero-125.webp" alt="TVS Fiero 125" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h3 class="vehicle-name">TVS Fiero 125</h3>
+              <div class="vehicle-price">~₹80,000 <small>expected</small></div>
+              <p class="vehicle-desc">124.8cc, sporty commuter, race‑inspired graphics, LED DRL, i‑touch start.</p>
+            </div>
+          </div>
+
+          <!-- 6. Hero Xtreme 125R -->
+          <div class="card">
+            <div class="card-image">
+              <img src="https://cdn1.smartprix.com/rx-iGFcnTWfV-w280-h280/hero-xtreme-125r.webp" alt="Hero Xtreme 125R" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h3 class="vehicle-name">Hero Xtreme 125R</h3>
+              <div class="vehicle-price">₹89,000 – 1,04,500 <small>on-road</small></div>
+              <p class="vehicle-desc">124.7cc, 11.4 bhp, aggressive styling, single‑channel ABS, rake design.</p>
+            </div>
+          </div>
+
+          <!-- 7. Honda CB125 Hornet -->
+          <div class="card">
+            <div class="card-image">
+              <img src="https://cdn1.smartprix.com/rx-iRZwSEGZm-w280-h280/honda-cb125-hornet.webp" alt="Honda CB125 Hornet" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h3 class="vehicle-name">Honda CB125 Hornet</h3>
+              <div class="vehicle-price">₹1,12,000 <small>approx</small></div>
+              <p class="vehicle-desc">124cc, 11.5 bhp, muscular tank, full LED, diamond frame.</p>
+            </div>
+          </div>
+
+          <!-- 8. TVS Ronin -->
+          <div class="card">
+            <div class="card-image">
+              <img src="https://cdn1.smartprix.com/rx-iI0ivFPHf-w280-h280/tvs-ronin.webp" alt="TVS Ronin" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h3 class="vehicle-name">TVS Ronin</h3>
+              <div class="vehicle-price">₹1,49,000 – 1,71,000 <small>on-road</small></div>
+              <p class="vehicle-desc">225cc, 20.4 bhp, retro‑scrambler, USD forks, slipper clutch, TBT navigation.</p>
+            </div>
+          </div>
+
+          <!-- 9. Triumph Speed 400 -->
+          <div class="card">
+            <div class="card-image">
+              <img src="https://cdn1.smartprix.com/rx-iUZCPN0P6-w280-h280/triumph-speed-400.webp" alt="Triumph Speed 400" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h3 class="vehicle-name">Triumph Speed 400</h3>
+              <div class="vehicle-price">₹2,33,000 <small>ex-showroom</small></div>
+              <p class="vehicle-desc">398cc, 40 bhp, modern classic, torque‑rich, premium cycle parts.</p>
+            </div>
+          </div>
+
+          <!-- 10. Harley-Davidson X440 -->
+          <div class="card">
+            <div class="card-image">
+              <img src="https://cdn1.smartprix.com/rx-iy6SlHSkX-w280-h280/harley-davidson-x440.webp" alt="Harley-Davidson X440" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h3 class="vehicle-name">Harley-Davidson X440</h3>
+              <div class="vehicle-price">₹2,29,000 – 2,79,000 <small>on-road</small></div>
+              <p class="vehicle-desc">440cc, 27 bhp, air‑oil cooled, retro cruiser, Bluetooth connectivity.</p>
+            </div>
+          </div>
+
+          <!-- 11. Yamaha R15 V4 -->
+          <div class="card">
+            <div class="card-image">
+              <img src="https://cdn1.smartprix.com/rx-iei6SPcIU-w280-h280/yamaha-r15-v4.webp" alt="Yamaha R15 V4" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h3 class="vehicle-name">Yamaha R15 V4</h3>
+              <div class="vehicle-price">₹1,95,714 <small>on-road approx</small></div>
+              <p class="vehicle-desc">155cc, 18.4 bhp, VVA, dual‑channel ABS, aerodynamics, traction control.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CARS SECTION ========== -->
+    <section id="cars" class="section">
+      <div class="container">
+        <h2 class="section-title">🚗 popular cars</h2>
+        <div class="vehicle-grid">
+          <!-- 1. Nissan Magnite -->
+          <div class="card">
+            <div class="card-image">
+              <img src="https://cdn1.smartprix.com/rx-iTh8gtAr7-w280-h280/nissan-gravite.webp" alt="Nissan Magnite" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h3 class="vehicle-name">Nissan Magnite</h3>
+              <div class="vehicle-price">₹5.99 – 11.50 lakh <small>on-road</small></div>
+              <p class="vehicle-desc">Compact SUV, 1.0L turbo, 5‑star safety, 8‑inch touchscreen, 360° camera.</p>
+            </div>
+          </div>
+
+          <!-- 2. Pagani Zonda -->
+          <div class="card">
+            <div class="card-image">
+              <img src="https://cdn1.smartprix.com/rx-iGz3ip1rV-w280-h280/pagani-zonda.webp" alt="Pagani Zonda" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h3 class="vehicle-name">Pagani Zonda</h3>
+              <div class="vehicle-price">~₹18 crore <small>exotic</small></div>
+              <p class="vehicle-desc">6.0L‑7.3L V12, carbon‑titanium, bespoke hypercar, limited production.</p>
+            </div>
+          </div>
+
+          <!-- 3. Tata Punch -->
+          <div class="card">
+            <div class="card-image">
+              <img src="https://cdn1.smartprix.com/rx-iQ29mc6eU-w280-h280/tata-punch.webp" alt="Tata Punch" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h3 class="vehicle-name">Tata Punch</h3>
+              <div class="vehicle-price">₹6.13 – 10.15 lakh <small>on-road</small></div>
+              <p class="vehicle-desc">Micro SUV, 1.2L petrol, 5‑star NCAP, high ground clearance, iRA tech.</p>
+            </div>
+          </div>
+
+          <!-- 4. Maruti Suzuki S-Presso -->
+          <div class="card">
+            <div class="card-image">
+              <img src="https://cdn1.smartprix.com/rx-i4TyFawB2-w280-h280/maruti-suzuki-s-pres.webp" alt="Maruti Suzuki S-Presso" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h3 class="vehicle-name">Maruti Suzuki S-Presso</h3>
+              <div class="vehicle-price">₹4.27 – 6.39 lakh <small>on-road</small></div>
+              <p class="vehicle-desc">1.0L engine, tallboy design, 7‑inch touchscreen, dual airbags.</p>
+            </div>
+          </div>
+
+          <!-- 5. Tata Sumo -->
+          <div class="card">
+            <div class="card-image">
+              <img src="https://cdn1.smartprix.com/rx-iuMPMXXTS-w280-h280/tata-sumo.webp" alt="Tata Sumo" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h3 class="vehicle-name">Tata Sumo</h3>
+              <div class="vehicle-price">~₹8.50 lakh <small>discontinued, used</small></div>
+              <p class="vehicle-desc">Legendary MPV, 2.0L diesel, rugged body‑on‑frame, 7‑9 seater.</p>
+            </div>
+          </div>
+
+          <!-- 6. Hyundai Venue -->
+          <div class="card">
+            <div class="card-image">
+              <img src="https://cdn1.smartprix.com/rx-iB3wMt7mL-w280-h280/hyundai-venue.webp" alt="Hyundai Venue" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h3 class="vehicle-name">Hyundai Venue</h3>
+              <div class="vehicle-price">₹7.99 – 13.48 lakh <small>on-road</small></div>
+              <p class="vehicle-desc">Compact SUV, 1.0L turbo / 1.2L / 1.5L diesel, BlueLink, sunroof.</p>
+            </div>
+          </div>
+
+          <!-- 7. Maruti Suzuki Baleno -->
+          <div class="card">
+            <div class="card-image">
+              <img src="https://cdn1.smartprix.com/rx-iisy7eAHI-w280-h280/maruti-suzuki-baleno.webp" alt="Maruti Suzuki Baleno" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h3 class="vehicle-name">Maruti Suzuki Baleno</h3>
+              <div class="vehicle-price">₹6.66 – 9.90 lakh <small>on-road</small></div>
+              <p class="vehicle-desc">Premium hatch, 1.2L DualJet, mild‑hybrid, 360° camera, head‑up display.</p>
+            </div>
+          </div>
+
+          <!-- 8. Land Rover Range Rover Sport SV Edition Two (image placeholder) -->
+          <div class="card">
+            <div class="card-image">
+              <img src="https://placehold.co/280x280/1e2b3a/white?text=Range+Rover+Sport+SV&font=montserrat" alt="Land Rover Range Rover Sport SV" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h3 class="vehicle-name">Range Rover Sport SV</h3>
+              <div class="vehicle-price">₹2.95 Cr <small>ex-showroom</small></div>
+              <p class="vehicle-desc">4395cc Twin-Turbo V8 · 626bhp · 750Nm · 0-100 in 3.9s · AWD · 290 km/h</p>
+              <p class="vehicle-desc">Panoramic roof · ADAS · Full auto parking · 360° cam · HUD · Meridian sound</p>
+            </div>
+          </div>
+
+          <!-- 9. BMW X5 xDrive40i M Sport -->
+          <div class="card">
+            <div class="card-image">
+              <img src="https://cdn1.smartprix.com/rx-iLXdUnJpZ-w280-h280/bmw-x5-xdrive40i-m-s.webp" alt="BMW X5 xDrive40i M Sport" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h3 class="vehicle-name">BMW X5 xDrive40i</h3>
+              <div class="vehicle-price">₹1.20 Cr <small>approx ex-showroom</small></div>
+              <p class="vehicle-desc">3.0L Twin-Turbo Inline-6 · 375 bhp · 520 Nm · 0-100 in 5.4s · xDrive AWD · 8-speed auto</p>
+              <p class="vehicle-desc">M Sport kit · Panoramic sunroof · 12.3" display · ADAS · Gesture control</p>
+            </div>
+          </div>
+
+          <!-- 10. Aston Martin DBX -->
+          <div class="card">
+            <div class="card-image">
+              <img src="https://cdn1.smartprix.com/rx-iurkOpIHm-w280-h280/aston-martin-dbx.webp" alt="Aston Martin DBX" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h3 class="vehicle-name">Aston Martin DBX</h3>
+              <div class="vehicle-price">₹3.82 Cr <small>ex-showroom</small></div>
+              <p class="vehicle-desc">4.0L Twin-Turbo V8 (AMG) · 550 bhp · 700 Nm · 0-100 in 4.5s · AWD · 291 km/h</p>
+              <p class="vehicle-desc">Handcrafted British luxury · Active exhaust · 9" infotainment · Bridge of Weir leather</p>
+            </div>
+          </div>
+
+          <!-- 11. Lamborghini Urus -->
+          <div class="card">
+            <div class="card-image">
+              <img src="https://cdn1.smartprix.com/rx-i1GLFxh1U-w280-h280/lamborghini-urus.webp" alt="Lamborghini Urus" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h3 class="vehicle-name">Lamborghini Urus</h3>
+              <div class="vehicle-price">₹4.18 Cr <small>ex-showroom</small></div>
+              <p class="vehicle-desc">4.0L Twin-Turbo V8 · 650 bhp · 850 Nm · 0-100 in 3.6s · AWD · 305 km/h</p>
+              <p class="vehicle-desc">Super SUV · 6 drive modes · Carbon-ceramic brakes · ANIMA · Tamburo</p>
+            </div>
+          </div>
+
+          <!-- 12. Toyota Land Cruiser 300 -->
+          <div class="card">
+            <div class="card-image">
+              <img src="https://cdn1.smartprix.com/rx-iAjAfsch6-w280-h280/toyota-land-cruiser.webp" alt="Toyota Land Cruiser 300" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h3 class="vehicle-name">Toyota Land Cruiser 300</h3>
+              <div class="vehicle-price">₹2.10 Cr <small>ex-showroom</small></div>
+              <p class="vehicle-desc">3.3L V6 Twin-Turbo Diesel · 309 bhp · 700 Nm · 10-speed auto · Full-time 4WD · 3 diffs</p>
+              <p class="vehicle-desc">Legendary off-roader · 7 seats · Multi-Terrain Monitor · Crawl Control · KDSS</p>
+            </div>
+          </div>
+
+          <!-- 13. Tata Harrier EV -->
+          <div class="card">
+            <div class="card-image">
+              <img src="https://cdn1.smartprix.com/rx-idt83cdwY-w280-h280/tata-harrier-ev.webp" alt="Tata Harrier EV" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h3 class="vehicle-name">Tata Harrier EV</h3>
+              <div class="vehicle-price">₹25-30 Lakh <small>expected</small></div>
+              <p class="vehicle-desc">All-electric SUV · Gen 3 architecture · 400V system · 500+ km range · RWD option</p>
+              <p class="vehicle-desc">Panoramic roof · 12.3" touchscreen · Vegan interior · 5-star NCAP likely</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <div class="container">
+      <div class="footer-content">
+        <div class="contact-info">
+          <span>📧 info@mayabazr.in</span>
+          <span>📞 +91 98765 43210</span>
+          <span>📍 digital showroom</span>
+        </div>
+        <div class="copyright">
+          &copy; 2026 Mayabazr Showroom. All rights reserved.
+        </div>
+      </div>
+      <p style="margin-top:1.5rem; font-size:0.85rem; color:#5f748b;">*Prices are indicative, based on 2025‑26 sources (autoX, CNBC, Smartprix). Images from Smartprix CDN and placeholders.</p>
+    </div>
+  </footer>
+</body>
+</html>
