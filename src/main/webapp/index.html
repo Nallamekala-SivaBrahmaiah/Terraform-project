@@ -33,6 +33,15 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.02);
     }
 
+    .context-text {
+      font-size: 1rem;
+      letter-spacing: 1px;
+      color: #3b82f6;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
     .site-header h1 {
       font-size: 2.5rem;
       font-weight: 700;
@@ -46,6 +55,17 @@
       color: #4a5c6e;
       font-size: 1.2rem;
       margin-top: 0.25rem;
+    }
+
+    .quote {
+      font-style: italic;
+      font-size: 1rem;
+      color: #5f748b;
+      margin-top: 1rem;
+      border-top: 1px dashed #d1deed;
+      display: inline-block;
+      padding-top: 0.75rem;
+      max-width: 80%;
     }
 
     /* navigation */
@@ -214,14 +234,19 @@
       .container { padding: 0 1.2rem; }
       .nav-links { gap: 1.5rem; }
       .footer-content { flex-direction: column; align-items: start; }
+      .quote { max-width: 100%; }
     }
   </style>
 </head>
 <body>
   <header class="site-header">
     <div class="container">
+      <!-- Added context above the title -->
+      <div class="context-text">India’s most trusted auto showcase</div>
       <h1 class="showroom-name">MAYABAZR SHOWROOM</h1>
-      <p class="tagline">bikes · cars · specs · prices</p>
+      <!-- The tagline "bikes · cars · specs · prices" has been removed -->
+      <!-- Added quotation -->
+      <div class="quote">“Four wheels move the body, two wheels move the soul — but here, every ride tells a story.”</div>
     </div>
   </header>
 
