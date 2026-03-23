@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: siva-container
-        image: 779679300583.dkr.ecr.ap-south-1.amazonaws.com/siva-ecr-repository02:siva
+        image: awsazureclouds.azurecr.io/siva9381
         ports:
         - containerPort: 8080
         imagePullPolicy: Always
