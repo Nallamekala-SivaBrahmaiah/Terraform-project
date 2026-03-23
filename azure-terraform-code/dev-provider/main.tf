@@ -11,8 +11,8 @@ module "acr" {
   loc_name   = module.rg.rg_location
   depends_on = [module.rg]
 }
-module "eks" {
-  source       = "../Infra-Module/Eks-Module"
+module "aks" {
+  source       = "../Infra-Module/Aks-Module"
   cluster_name = "testcluster01"
   rg_name      = module.rg.rg_name
   loc_name     = module.rg.rg_location
@@ -26,7 +26,7 @@ module "vnet" {
   address_space = ["10.1.0.0/16"]
   rg_name       = module.rg.rg_name
   loc_name      = module.rg.rg_location
-  depends_on    = [module.eks]
+  depends_on    = [module.aks]
 }
 module "subnet" {
   source           = "../Infra-Module/Subnet-Module"
@@ -64,7 +64,7 @@ module "nsg" {
 
 }
 module "ec2" {
-  source   = "../Infra-Module/Ec2-Module"
+  source   = "../Infra-Module/Vm-Module"
   vm_name  = "ec2-instance"
   rg_name  = module.rg.rg_name
   loc_name = module.rg.rg_location
